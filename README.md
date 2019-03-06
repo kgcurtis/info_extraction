@@ -13,3 +13,10 @@ Next, go to: [Case Law](https://case.law/) and create an account. From there, na
 After downloading and extracting, navigate to the /data folder and extract that as well. Now, you will have a .jsonl file. If you run coref_resolution.py
 from within this folder, it will resolve coreferences in the cases. This will take a very long time, so it may not be necessary to resolve the whole
 .jsonl file at first.
+
+
+
+## WitAI implementation
+- `extractor.py`: file containing the Spacy parser. It calls upon a `WitClient`
+- `wit_client.py`: Takes text, breaks it into acceptable-length chunks (for WitAI API specs), then determines the relevant entities
+Regarding 
