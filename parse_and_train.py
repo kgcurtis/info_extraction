@@ -44,11 +44,9 @@ for entity_type in gold_standard_buckets:
         arr = [{'LOWER':text.lower()}]
         matcher.add(entity_type, None, arr)
 
-# Read first 100 lines of textfile (too big otherwise)
-with open('output.txt') as file:
-    head = [next(file) for x in range(100)]
+file = open('output_small.text', 'r')
 
-doc = nlp(' '.join(head))
+doc = nlp(file.read())
 # Find matches in doc
 matches = matcher(doc)
 
