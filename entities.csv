@@ -1,0 +1,105 @@
+ Entities Types:,,
+Court Type,,
+Case Type,,
+Legal Action,,
+Legal Position,,
+Legal Document,,
+Offense Type,,
+,,
+Entities:,,
+Legal Position,Accused, formally charged but not yet tried for committing a crime; the person who has been charged may also be called the defendant.
+Legal Action,Acquittal," a judgment of court, based on the decision of either a jury or a judge, that a person accused is not guilty of the crime for which he has been tried."
+Legal Position,ADA," Assistant district attorney. An assistant district attorney works for the elected District Attorney. An ADA will review and prosecute cases as assigned. ADA's meet with law enforcement, witnesses, and victims. They generally have authority to dispose of those cases assigned to them."
+Legal Action,Adjournment, putting off or postponing business or a session of court until another time or place.
+Legal Action,Adjudication," the judicial decision that ends a criminal proceeding by a judgment of acquittal, conviction, or dismissal of the case."
+Legal Document,Affidavit, a written statement that the writer swears is true.
+Legal Action,Appeal," a request by either the defense or the prosecution that a higher court review the results of a decision on certain motions or in a completed trial. This can be an appeal from superior court to an appeals court, or an appeal from district court to superior court for a trial."
+Legal Action,Arraignment, to bring a prisoner before a judge to ask how he pleads to the charges against him.
+Legal Document,Arrest warrant," A written order issued by the District court or magistrate including a statement of the crime of which the person to be arrested is accused, and directing that the person be arrested and held to answer the accusation before a magistrate or other judge."
+Legal Position,Assailant, person identified as the attacker.
+Legal Position,Bailiff, a uniformed officer who keeps order in the courtroom.
+Legal Position,Bench, how the judge is sometimes referred to as in “the bench;” also where the judge sits during the proceedings.
+Legal Document,Bench warrant, an order issued by a judge to bring to court an accused person who has been released before trial and does not return to court when ordered to do so; or a witness who has failed to appear when ordered to do so.
+Legal Position,Bondsman," (also Bail Bondsman) a licensed person or person working for a licensed company, who will post bond for a defendant upon payment of a fee. The fee is generally fifteen per cent (15%) of the bond."
+Legal Document,Booking," an official police record of the arrest of a person accused of committing a crime which identifies the accused, the time and place of arrest, the arresting authority, and the reason for the arrest."
+Case Type,Capital Case, This is a first-degree murder case in which the jury can impose either a life sentence or the death penalty. If a person is guilty of first-degree murder and there are any statutory aggravating factors then the State has to seek the death penalty.
+Legal Action,Charge, the formal accusation filed by the prosecutor’s office that a specific person has committed a specific crime; the filing may be called “pressing charges.”
+Legal Position,Clerk of Court," an officer of a court of justice who has charge of the clerical part of its business-- who keeps its records and seal, issues process, enters judgments and orders, gives certified copies from the records, etc."
+Legal Action,Commitment, the warrant or order by which a court or magistrate directs an officer to take a person to prison.
+Legal Action,Complaint," a term in civil cases that signifies a filing of a suit. In criminal court, the complaint is the reporting of a crime to authorities."
+Legal Action,Continuance, postponement of a court hearing; putting it off until another day.
+Court Type,Criminal Court, a court that hears cases concerned with the alleged violation of criminal law.
+Legal Action,Cross examination," the examination of a witness by the party opposed to the one who produced him during a trial or hearing, or upon taking a deposition."
+Legal Position,DA," Commonly refers to an attorney for the community elected by the people in his district to represent the interests of the general public, including crime victims, in court proceedings against people accused of committing crimes. Other jurisdictions use other terms"
+Legal Position,Defendant, a person who has been formally charged with committing a crime; the person accused of a crime.
+Legal Position,Defense Attorney," the lawyer who represents the defendant in legal proceedings. Victims are usually not required to speak with defense attorneys except in court, but may do so if they choose."
+Legal Action,Deferred prosecution," Prosecution that the DA postpones for a certain period of time. The North Carolina Legislature has authorized District Attorneys to place defendants who commit offenses up to class H felonies on supervised probation with the agreement that the charges will be dismissed if probation is successfully completed. Defendants placed on deferred prosecution cannot have been on probation before. They are subject to all the regular conditions of probation such as paying restitution and community service. If the time elapses with no problems, the D A will dismiss the case."
+Legal Action,Deferred sentence," defendant enters a guilty plea, receives probation for a certain amount of time, and gives up the right to trial. The DA dismisses the case if the probation is completed successfully."
+Legal Action,Direct examination, the first interrogation or examination of a witness during trial by the party on whose behalf he is called.
+Legal Action,Discovery, Process by which the DA provides to a Defense Attorney information gathered during the investigation of a felony; the ascertainment of that which was previously unknown.
+Legal Action,Dismissal, a decision by the prosecutor or other judicial officer to end a case for legal or other reasons.
+Legal Action,Disposition," the final judicial decision which ends a criminal proceeding by a judgment of acquittal or dismissal, or which states the sentence if the accused is convicted."
+Legal Position,District Attorney," Commonly refers to an official elected by the people of the community in his/her district to represent the interests of the general public, including crime victims, in court proceedings against people accused of committing crimes. Some jurisdictions use other terms"
+Legal Document,District Attorney’s Report, A report that is prepared by law enforcement in felony cases to inform the District Attorney what the facts are in a case. This is also known as a “felony report.”
+Court Type,District court, where misdemeanor cases are heard concerning the violation of state statutes.
+Legal Action,Double jeopardy, putting a person on trial more than once for the same offense; double jeopardy is forbidden by the U.S. Constitution.
+Legal Position,Expert witness," Woman/man of a science educated in the art, or persons possessing special or peculiar knowledge acquired from practical experience."
+Legal Action,Extradition, the surrender by one state to another of an individual accused or convicted of an offense outside its own territory and within the territorial jurisdiction of the other.
+Legal Document,Evidence, testimony and objects used to prove statements made by the victim and the accused.
+Case Type,Exceptional Case, a case designated during Criminal Docket Management process as one so complicated as to fall outside the time guidelines of the general CDM rules.
+Legal Action,Failure to appear," defendant does not appear for court, order for arrest is issued."
+Offense Type,Felony," a crime of graver or more atrocious nature than those designated as misdemeanors, carrying more potential jail time for an offender."
+Legal Action,First Setting, The initial hearing for a case in the Criminal Docket Management process.
+Legal Action,Final Setting, The final hearing for a case in the Criminal Docket Management process. Cases not disposed of during this setting are set for trial.
+Legal Position,Fugitive, one who flees or escapes from some duty or penalty.
+Legal Position,Grand Jury," a grand jury is composed of eighteen citizens meet in felony cases to determine whether a crime probably occurred and whether the defendant probably committed the crime. If twelve of the eighteen jurors, agree then they return a true bill of indictment. The office of the District Attorney prepares indictments."
+Legal Position,Hung jury, a jury whose members cannot agree whether the accused is guilty or not; mistrial.
+Legal Action,Impeach, to discredit the truthfulness of a witness.
+Legal Action,Indictment," a formal written accusation, made by a grand jury after submission by the prosecutor and filed in a court, alleging that a specific person committed a specific crime. The office of the District Attorney prepares indictments."
+Legal Position,Indigent, an accused person who has been found by the court to be too poor to pay for his/her own attorney.
+Legal Action,Infraction, minor violations of the law that do not rise to the level of misdemeanor. Driving offense make up the bulk of charges designated as infractions.
+Legal Action,Investigation," the gathering of evidence by law-enforcement officials (and in some cases prosecutors) for presentation to a grand jury or in a court, to prove that the accused did commit the crime."
+Legal Position,Judge, a judicial officer who has been elected or appointed to preside over a court of law.
+Legal Action,Judgment, a court’s final determination of the rights and obligations of the parties in a case. This may be in answer to a motion or trial.
+Legal Position,Jury, a group of citizens who decide whether the accused is guilty or not. They are selected by law and sworn to determine certain facts by listening to testimony in order to reach a decision as to guilt or innocence.
+Legal Action,Jury selection," the process by which the judge, the prosecutor, and the defense attorney screen citizens who have been called to jury duty to determine if they will hear the evidence and decide guilt or innocence in a particular trial."
+Legal Position,Juvenile, a person accused of an offense who is too young at the time of the alleged offense to be subject to criminal court proceedings as an adult and is therefore handled in the juvenile justice system.
+Legal Position,Magistrate," person who can issue warrants when a person is accused of a crime. The are clothed with power as a public civil officer and have additional duties such as setting bond, hearing small claims, and accepting payment for certain infractions and misdemeanors."
+Offense Type,Misdemeanor, offenses lower than felonies and generally those punishable by fine or imprisonment otherwise than in penitentiary. These crimes are generally punishable by no more than 150 days in jail.
+Legal Action,Not guilty, a verdict by a judge or a jury that a person accused of a crime did not commit it or that there is not enough evidence to prove beyond a reasonable doubt that the accused committed the crime.
+Legal Action,Not guilty plea, a formal response by a person accused of committing a specific crime in which the accused says that the charges are not true and he did not commit the crime.
+Legal Document,Notice, a written order to appear in court at a certain time and place.
+Legal Position,Offender, an adult who has been convicted of a crime.
+Offense Type,Offense," a crime; technically, in some jurisdictions, only the most minor crimes are called offenses."
+Legal Action,Opening statement, an outline of anticipated proof. Its purpose is to advise the jury prior to testimony of the facts relied upon and of issues involved; and to give the jury a general picture of the facts and the situations so that the jury will be able to understand the evidence.
+Legal Document,Order of Arrest, an order for the arrest of a defendant following the filing of charges or failure to appear when required by the court.
+Legal Action,Perjury, deliberate false testimony under oath involving a material fact.
+Legal Position,Perpetrator, a person who actually commits a crime.
+Legal Action,Personal recognizance, the promise of an accused person to the court that he will return to court when ordered to do so; given in exchange for release before and during his trial.
+Legal Action,Petition, a document filed in juvenile court alleging that a juvenile should come under the jurisdiction of the juvenile court for some offense or asking that the juvenile be transferred to criminal court for prosecution as an adult.
+Legal Action,Plea, a defendant’s formal answer in court to the charge that he has committed a crime. Some possible pleas include
+Legal Action,Plea bargain, a plea agreed to by a defendant and the prosecutor; a negotiated plea that may set out exact terms relating to punishment and disposition of a case.
+Legal Action,Pre-sentence investigation, report compiled by the Probation Department after plea and before sentencing to make sentencing recommendations to the judge.
+Case Type,Probation hearing, a hearing before a judge to review the performance of a defendant while on probation. Hearings are not generally held unless a probationer has violated some term of their probationary sentence.
+Legal Position,Prosecutor," an attorney for the community elected by the voters of a district to represent the interests of the general public, including crime victims, in court proceedings against people accused of committing crimes. Some jurisdictions use other terms for the prosecutor, such as U.S. Attorney (a federal prosecutor), district attorney, or state’s attorney."
+Legal Position,Public defender, an attorney employed by a government agency to represent defendants who are unable to hire private counsel.
+Legal Action,Remand, to send back to a lower court. Typically refers to a situation where a Defendant in Superior Court asks to return a misdemeanor conviction to District Court for compliance with the judgment of that court.
+Legal Document,Search warrant," an order in writing, issued by a judge or magistrate, in the name of the state, directed to a sheriff, or other officer, commanding him to search a specific house, shop, or other premises, for specific property related to a crime."
+Case Type,Second Setting, the second court hearing during the Criminal Docket Management process.
+Legal Document,Statute," an act of the legislature declaring, commanding, or prohibiting something. A law."
+Legal Document,Subpoena, a court paper requesting the appearance of a witness or documents to be present at a court proceeding.
+Legal Action,Summons, a citation requiring a defendant to appear in court to answer a suit to which has been brought against him.
+Court Type,Superior court, where most felony cases are heard concerning violation of state statutes.
+Court Type,Supreme court, a court of higher powers and extensive jurisdiction; our state has supreme court and the United States has a Supreme Court.
+Legal Position,Suspect," a person who is believed by criminal justice officials to be one who may have committed a specific crime, but who has not been arrested or formally charged. Once arrested a suspect is called a defendant."
+Legal Document,Testimony, statements made in court by people who have sworn or affirmed to tell the truth.
+Legal Document,Transcript," In court it is a verbatim writing of what was said in court during a trial, or a paper writing setting out terms of a plea taken from a defendant. Also a copy of an original writing or deed."
+Legal Action,Trial, an examination of issues of fact and law before a judge and sometimes a jury at which evidence is presented to determine whether or not the accused person is guilty of committing a specific crime.
+Court Type,Traffic Court," an administrative court that hears only traffic matters, usually uncontested."
+Legal Position,U.S. Attorney, a federal prosecutor.
+Legal Action,Verdict, the decision of a judge or jury at the end of a trial that the accused defendant is either guilty or not guilty.
+Legal Action,Waiver, the intentional or voluntary relinquishment of a known right.
+Legal Document,Warrant, see arrest warrant and bench warrant.
+Legal Action,Watson Hearing, a procedure in death penalty cases where the defense attempts to require the state specific what aggravating factors it will use in seeking a death sentence.
+Legal Position,Witness," a person who has directly seen an event, such as a crime or who has other knowledge that is related to a court case; or some thing, such as a piece of physical evidence."
+Legal Document,Writ of execution, a writ to put in force the judgment of decree of a court.
