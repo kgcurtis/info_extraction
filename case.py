@@ -1,6 +1,11 @@
 from wit_client import WitClient
 from spacy_client import Spacy
+from openie_client import OpenIE
+import string
+from textwrap import wrap
+import re
 
+openie_client = OpenIE()
 wit_client = WitClient()
 spacy_client = Spacy()
 spacy_client.add_states_pipe()
@@ -48,10 +53,45 @@ class Case:
             if debug:
                 print(state)
 
-        # use relationship extraction on the case text here?
-        # print('legal entities in TEXT ******')
-        # for entity, value in self.legal_entities(self.text):
-        #     print("%s: %s" % (entity, value))
+        for relation in openie_client.extractRelationships(self.text):
+            self.tuples.append(relation)
+            if debug:
+                print(openie_rels)
+
+
+    def saveTrainingData(self, output_file):
+        for sentence in self.generateTrainingData(self.text):
+            for item in sentence:
+                output_file.write(item + "\n")
+            output_file.write('\n')
+
+    def generateTrainingData(self, msg):
+
+        translator = str.maketrans('', '', string.punctuation)
+        msg = self.text.translate(translator)
+
+        wordDict = {}
+
+        #Get legal entity annotations from wit
+        for entity, value in wit_client.entities(msg):
+            valueArr = value.split(' ')
+            for item in valueArr:
+                wordDict[item] = entity
+
+        #Get all other entity annotations from spacy
+        for entity, value in spacy_client.people(msg):
+            valueArr = value.split(' ')
+            for item in valueArr:
+                wordDict[item] = entity
+
+        #Create the tab separated training data
+        sentence = []
+        for word in re.findall(r"[\w']+|[.,!?;]", self.text):
+            if word in wordDict:
+                sentence.append(word + "\t" + wordDict[word])
+            else:
+                sentence.append(word + "\tO")
+        yield sentence
 
 
     def legal_entities(self, msg):
@@ -59,9 +99,3 @@ class Case:
 
     def states(self, msg):
         return (state for state in spacy_client.states(msg))
-
-    def get_tuples(self):
-        return self.tuples
-
-    def text(self):
-        return self.text
