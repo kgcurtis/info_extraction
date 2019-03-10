@@ -1,25 +1,20 @@
-Relationships to extract:
+Relationships to extract
 
-1. Person's courtroom role (defendant/plaintiff/judge/juror/witness)
-  <PERSON, role was, LEGAL_POS>
 
-2. The Court Type where the case was tried (superior, appellate)
-  <CASE_NAME, tried in court type was, COURT_TYPE>
+Example:
+[
+  ('United States', 'against', 'Dickinson'),
+  ('United States v. Dickinson', 'plaintiff', 'United States'),
+  ('United States v. Dickinson', 'defendant', 'United States'),
+  ('United States v. Dickinson', 'court type', 'superior court'),
+  ('United States v. Dickinson', 'court location', 'Arkansas')
+ ]
 
-3. Where the case was tried
-  <CASE_NAME, trial location was, LOCATION>
-
-4. The type of case (civil, criminal)
-  <CASE_NAME, case type was, CASE_TYPE>
-
-5. Entity A brought a case against entity B
-  <(PERSON | ORG), filed a case against, (PERSON | ORG)>
-
-6. The case plaintiff
-  <CASE_NAME, plaintiff was, (PERSON | ORG)>
-
-7. The case defendant
-  <CASE_NAME, defendant was (PERSON | ORG)>
-
-8. The case decision
-  <CASE_NAME, decision was, LEGAL_ACTION>
+Format:
+ [
+   (<PERSON | ORG>, 'against',        <PERSON | ORG>),
+   (CASE_NAME,      'plaintiff',      <PERSON | ORG>),
+   (CASE_NAME,      'defendant',      <PERSON | ORG>),
+   (CASE_NAME,      'court type',     COURT_TYPE),
+   (CASE_NAME,      'court location', LOCATION)
+  ]
