@@ -12,9 +12,9 @@ Example:
 
 Format:
  [
-   (<PERSON | ORG>, 'against',        <PERSON | ORG>),
-   (CASE_NAME,      'plaintiff',      <PERSON | ORG>),
-   (CASE_NAME,      'defendant',      <PERSON | ORG>),
+   (PARTY, 'against',        PARTY),
+   (CASE_NAME,      'plaintiff',      PARTY),
+   (CASE_NAME,      'defendant',      PARTY),
    (CASE_NAME,      'court type',     COURT_TYPE),
    (CASE_NAME,      'court location', LOCATION)
   ]
