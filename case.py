@@ -28,8 +28,6 @@ class Case:
 
     def generate_tuples(self, debug=False):
 
-        self.tuples.append((self.case_name, 'was tried in', self.court_name))
-
         if 'v.' in self.case_name:
             parties = self.case_name.split(' v. ')
             first = parties[0]
@@ -37,19 +35,19 @@ class Case:
 
             self.tuples.append((first, ' against ', second))
             if self.appeal:
-                self.tuples.append((first, ' held the role of ', 'appellant'))
-                self.tuples.append((second, ' held the role of ', 'appellee'))
+                self.tuples.append((self.case_name, ' appellant ', first))
+                self.tuples.append((self.case_name, ' appellee ', second))
             else:
-                self.tuples.append((first, ' held the role of ', 'plaintiff'))
-                self.tuples.append((second, ' held the role of ', 'defendant'))
+                self.tuples.append((self.case_name, ' plaintiff ', first))
+                self.tuples.append((self.case_name, ' defendant ', second))
 
         for entity, value in self.legal_entities(self.court_name):
-            self.tuples.append((self.case_name, ' court type was ', value))
+            self.tuples.append((self.case_name, ' court type ', value))
             if debug:
                 print("%s: %s" % (entity, value))
 
         for state in self.states(self.court_name):
-            self.tuples.append((self.case_name, ' court location was ', state))
+            self.tuples.append((self.case_name, ' court location ', state))
             if debug:
                 print(state)
 

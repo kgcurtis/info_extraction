@@ -19,4 +19,11 @@ from within this folder, it will resolve coreferences in the cases. This will ta
 ## WitAI implementation
 - `extractor.py`: file containing the Spacy parser. It calls upon a `WitClient`
 - `wit_client.py`: Takes text, breaks it into acceptable-length chunks (for WitAI API specs), then determines the relevant entities
-Regarding 
+Regarding
+
+
+## Start Stanford coreNLP server
+First, copy server.properties and ner-model.ser.gz into coreNLP folder, then run:
+```
+java -Xmx8g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000 -serverProperties server.properties
+```
