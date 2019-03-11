@@ -9,45 +9,6 @@ class CaseLawNeoDB(object):
     def close(self):
         self.driver.close()
 
-# auto-commit based node creation
-def merge_person(driver, name):
-    cmd = 'MERGE (p:Person {name:$name})'
-    with driver.session() as sess:
-        return sess.run(cmd, name=name)
-
-# transaction based node creation
-def create_brick(driver, c, l, w, h):
-    with driver.session() as sess:
-        tx = sess.begin_transaction()
-        bid = create_brick_node(tx, c)
-        res = set_brick_dims(tx, bid, l, w, h)
-        print(res)
-        tx.commit()
-
-def create_brick_node(tx, c):
-    cmd = 'CREATE (b:Brick {color:$color}) RETURN id(b)'
-    return tx.run(cmd, color=c).single().value()
-
-
-def set_brick_dims(tx, bid, l, w, h):
-    cmd = ('MATCH (b:Brick) WHERE id(b) = $bid '
-        'SET b.length = $length '
-        'SET b.width = $width '
-        'SET b.height = $height'
-    )
-    return tx.run(cmd, bid = bid, length=l, width=w, height=h)
-
-# auto-commit based relationship creation
-def create_person_owned_colored_bricks(driver, name, color):
-    cmd = (
-        'MATCH (p:Person {name:$name}),(b:Brick {color:$color}) '
-        'MERGE (p)-[:OWNED]->(b)'
-    )
-    with driver.session() as sess:
-        tx = sess.begin_transaction()
-        tx.run(cmd, name=name, color=color)
-        tx.commit()
-
 # base functions
 def merge_party_rel_party(tx, sro, rel):
     cmd = (
