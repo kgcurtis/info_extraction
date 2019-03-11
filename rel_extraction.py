@@ -1,24 +1,45 @@
 from bs4 import BeautifulSoup
 import json_lines
 from case import Case
+import sys
 
-def preprocess(file, max_lines=100, debug=True, train=False):
+def preprocess(file, case_index=0, num_cases=1, debug=True, train=False):
     cases = []
     count = 0
 
     if train:
         training_data_file = open('training-data.tsv','w')
 
+    upperBound = sys.maxsize
+    if num_cases != "all":
+        upperBound = case_index + num_cases
+
     with open(file, 'rb') as f:
         reader = json_lines.reader(f)
-        for i in range(max_lines):
-            case = Case(next(reader))
+
+        idx = 0
+        for rawCase in reader:
+            # Quit once we exhaust our needs
+            if idx >= upperBound:
+                break
+
+            # Skip cases that aren't in range
+            if not case_index <= idx <= case_index + num_cases:
+                idx += 1
+                continue
+
+            case = Case(rawCase)
             cases.append(case)
 
             if train:
                 case.saveTrainingData(training_data_file)
+                
             if debug:
+                print(idx)
                 print(case.tuples)
+                print()
+
+            idx += 1
 
     if train:
         training_data_file.close()
@@ -27,4 +48,4 @@ def preprocess(file, max_lines=100, debug=True, train=False):
 
 
 # Update this to the correct jsonl file
-cases = preprocess('/Users/kcurtis/Downloads/Arkansas-20180829-text/data/data.jsonl', max_lines=5)
+cases = preprocess('data.jsonl', case_index = 6, num_cases = 2)
