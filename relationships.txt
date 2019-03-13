@@ -7,7 +7,8 @@ Example:
   ('United States v. Dickinson', 'plaintiff', 'United States'),
   ('United States v. Dickinson', 'defendant', 'United States'),
   ('United States v. Dickinson', 'court type', 'superior court'),
-  ('United States v. Dickinson', 'court location', 'Arkansas')
+  ('United States v. Dickinson', 'court location', 'Arkansas'),
+  ('Neely v. Robinson', 'references', 'Gilmore v. Pope')
  ]
 
 Format:
@@ -16,5 +17,6 @@ Format:
    (CASE_NAME,      'plaintiff',      PARTY),
    (CASE_NAME,      'defendant',      PARTY),
    (CASE_NAME,      'court type',     COURT_TYPE),
-   (CASE_NAME,      'court location', LOCATION)
+   (CASE_NAME,      'court location', LOCATION),
+   (CASE_NAME,      'references'',    CASE_NAME)
   ]

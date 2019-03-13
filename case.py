@@ -26,7 +26,7 @@ class Case:
         self.generate_tuples()
 
 
-    def generate_tuples(self, debug=False):
+    def generate_tuples(self, debug=True):
 
         if 'v.' in self.case_name:
             parties = self.case_name.split(' v. ')
@@ -51,10 +51,26 @@ class Case:
             if debug:
                 print(state)
 
+        for sentence in spacy_client.sentences(self.text):
+            if debug:
+                print(sentence)
+
+            for entity, value in self.legal_entities(sentence.text):
+                # Cleanup extraneous punctuation WitAI may include, e.g., "133 ; Roe vs Wade"
+                case = re.findall(r"[\w\s'’-]+ v. [\w\s'’-]+", value)
+
+                if entity == "CASE_NAME" and len(case) and case[0].strip() and case[0].strip() != self.case_name:
+                    self.tuples.append((self.case_name, ' references ', case[0].strip()))
+
+                if debug:
+                    print(entity, value)
+
         for relation in openie_client.extractRelationships(self.text):
             self.tuples.append(relation)
             if debug:
-                print(openie_rels)
+                print(relation)
+
+        print(self.tuples)
 
 
     def saveTrainingData(self, output_file):

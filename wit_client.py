@@ -22,6 +22,10 @@ class WitClient:
 		for phrase in wrap(msg, width = 256): 
 			witResponse = self.client.message(phrase)
 
+			caseNames = getNestedKey(witResponse, ["entities", "case_name"])
+			for instance in caseNames:
+				yield tuple(( "CASE_NAME", instance["value"] ))
+
 			caseTypes = getNestedKey(witResponse, ["entities", "case_type"])
 			for instance in caseTypes:
 				yield tuple(( "CASE_TYPE", instance["value"] ))

@@ -67,6 +67,10 @@ class Spacy:
         doc = self.nlp(msg)
         return ((ent.label_, ent.text) for ent in doc.ents if ent.label_ is 'PERSON')
 
+    def sentences(self, msg):
+        doc = self.nlp(msg)
+        return doc.sents
+
     def states(self, msg):
         doc = self.nlp(msg)
         return (token.text for token in doc if token._.is_state)
