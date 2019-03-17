@@ -1,0 +1,85 @@
+0 PERSON 0 O NNP James O O O
+0 LEGAL_ACTION 1 O VBD appealed O O O
+0 O 2 O TO to O O O
+0 O 3 O DT the O O O
+0 COURT_TYPE 4 O NN court O O O
+0 O 5 O . . O O O
+
+0 1 action
+
+1 O 0 O DT The O O O
+1 COURT_TYPE 1 O NN court O O O
+1 LEGAL_ACTION 2 O VBD dismissed O O O
+1 O 3 O DT the O O O
+1 O 4 O NN case O O O
+1 O 5 O . . O O O
+
+1 2 action
+
+2 O 0 O DT The O O O
+2 O 1 O NN case O O O
+2 O 2 O VBD was O O O
+2 LEGAL_ACTION 3 O VBN dismissed O O O
+2 O 4 O IN by O O O
+2 O 5 O DT the O O O
+2 COURT_TYPE 6 O NN court O O O
+2 O 7 O . . O O O
+
+6 3 action
+
+3 O 0 O DT The O O O
+3 O 1 O NN judgement O O O
+3 O 2 O VBD was O O O
+3 O 3 O VBN reversed O O O
+3 O 4 O . . O O O
+
+
+4 PERSON 0 O NNP James O O O
+4 PERSON 1 O NNP Miller O O O
+4 O 2 O VBD was O O O
+4 O 3 O DT a O O O
+4 LEGAL_POSITION 4 O NN judge O O O
+4 O 5 O . . O O O
+
+1 4 position
+0 4 position
+
+5 O 0 O DT The O O O
+5 O 1 O NNP Supreme O O O
+5 O 2 O NNP Court O O O
+5 LEGAL_ACTION 3 O VBD dismissed O O O
+5 O 4 O DT the O O O
+5 O 5 O NN judgement O O O
+5 O 6 O . . O O O
+
+
+6 O 0 O DT The O O O
+6 O 1 O NN judgement O O O
+6 O 2 O VBD was O O O
+6 LEGAL_ACTION 3 O VBN dismissed O O O
+6 O 4 O IN by O O O
+6 O 5 O DT the O O O
+6 O 6 O NNP Supreme O O O
+6 O 7 O NNPS Courts O O O
+6 O 8 O . . O O O
+
+
+7 O 0 O DT The O O O
+7 COURT_TYPE 1 O NN court O O O
+7 LEGAL_ACTION 2 O VBD dismissed O O O
+7 O 3 O DT the O O O
+7 O 4 O NN judgement O O O
+7 O 5 O IN of O O O
+7 O 6 O DT the O O O
+7 O 7 O NN defendant O O O
+7 O 8 O . . O O O
+
+1 2 action
+
+8 PERSON 0 O NNP Miller O O O
+8 O 1 O VBD was O O O
+8 O 2 O DT a O O O
+8 LEGAL_POSITION 3 O NN juror O O O
+8 O 4 O . . O O O
+
+0 3 position

@@ -1,0 +1,30 @@
+0 O 0 O DT The O O O
+0 O 1 O NNP Supreme O O O
+0 O 2 O NNP Court O O O
+0 LEGAL_ACTION 3 O VBD overruled O O O
+0 O 4 O DT the O O O
+0 LEGAL_ACTION 5 O NN motion O O O
+0 O 6 O TO to O O O
+0 O 7 O VB dismiss O O O
+0 O 8 O . . O O O
+
+3 5 action
+
+1 O 0 O NNP James O O O
+1 PERSON 1 O NNP Miller O O O
+1 O 2 O VBD was O O O
+1 O 3 O DT a O O O
+1 LEGAL_POSITION 4 O NN juror O O O
+1 O 5 O . . O O O
+
+1 4 position
+
+2 O 0 O DT The O O O
+2 LEGAL_POSITION 1 O NN jury O O O
+2 O 2 O VBD found O O O
+2 O 3 O DT the O O O
+2 O 4 O NN defendant O O O
+2 LEGAL_ACTION 5 O JJ guilty O O O
+2 O 6 O . . O O O
+
+1 5 action
