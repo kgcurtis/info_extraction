@@ -25,17 +25,17 @@ Regarding
 ## Stanford coreNLP
 
 Files to put into coreNLP folder:
-- server.properties                         
-- ner-model.ser.gz                          (custom trained NER model)
-- roth_relation_model_pipeline_2.ser        (custom trained relationship extractor model)
-- stanford-corenlp.jar into coreNLP folder  (recompiled corenlp classes to handle custom entities)
+- `server.properties`                         
+- `ner-model.ser.gz`                          (custom trained NER model)
+- `roth_relation_model_pipeline_2.ser`        (custom trained relationship extractor model)
+- `stanford-corenlp.jar into coreNLP folder`  (recompiled corenlp classes to handle custom entities)
 
 Other files:
-- RothCONLL04Reader.java        (added support for custom entities)
-- RothEntityExtractor.java      (added support for custom entities)
-- small/medium_train.corp       (relationship extractor training data)
-- roth.properties               (relationship extractor training properties file)
- 
+- `RothCONLL04Reader.java`        (added support for custom entities)
+- `RothEntityExtractor.java`      (added support for custom entities)
+- `small/medium_train.corp`       (relationship extractor training data)
+- `roth.properties`               (relationship extractor training properties file)
+
 ### Then start the server:
 ```
 java -Xmx8g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000 -serverProperties server.properties
