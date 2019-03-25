@@ -9,14 +9,19 @@ Example:
   ('United States v. Dickinson', 'court type', 'superior court'),
   ('United States v. Dickinson', 'court location', 'Arkansas'),
   ('Neely v. Robinson', 'references', 'Gilmore v. Pope')
- ]
+]
 
 Format:
- [
+[
    (PARTY,          'against',        PARTY),
+   (CASE_NAME,      'decided on',     DATE),
    (CASE_NAME,      'plaintiff',      PARTY),
    (CASE_NAME,      'defendant',      PARTY),
    (CASE_NAME,      'court type',     COURT_TYPE),
    (CASE_NAME,      'court location', LOCATION),
    (CASE_NAME,      'references'',    CASE_NAME)
-  ]
+]
+
+Potential relationships to add:
+- Reason for the case
+- Outcome of the case

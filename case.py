@@ -18,6 +18,7 @@ class Case:
 
         self.case_name = info['name_abbreviation']
         self.court_name = info['court']['name']
+        self.date = info['decision_date']
         self.text = ' '.join([opinion['text'] for opinion in info['casebody']['data']['opinions']])
         self.appeal = ('appeal' in self.text or 'appeal' in self.court_name)
 
@@ -39,6 +40,8 @@ class Case:
             else:
                 self.tuples.append((self.case_name, ' plaintiff ', first))
                 self.tuples.append((self.case_name, ' defendant ', second))
+
+        self.tuples.append((self.case_name, ' decided on ', self.date))
 
         for entity, value in self.legal_entities(self.court_name):
             self.tuples.append((self.case_name, ' court type ', value))
