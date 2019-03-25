@@ -3,7 +3,6 @@ from spacy_client import Spacy
 from openie_client import OpenIE
 import string
 from textwrap import wrap
-import re
 
 openie_client = OpenIE()
 wit_client = WitClient()
@@ -56,11 +55,8 @@ class Case:
                 print(sentence)
 
             for entity, value in self.legal_entities(sentence.text):
-                # Cleanup extraneous punctuation WitAI may include, e.g., "133 ; Roe vs Wade"
-                case = re.findall(r"[\w\s'’-]+ v. [\w\s'’-]+", value)
-
-                if entity == "CASE_NAME" and len(case) and case[0].strip() and case[0].strip() != self.case_name:
-                    self.tuples.append((self.case_name, ' references ', case[0].strip()))
+                if entity == "CASE_NAME" and value != self.case_name:
+                    self.tuples.append((self.case_name, ' references ', value))
 
                 if debug:
                     print(entity, value)

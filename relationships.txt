@@ -13,7 +13,7 @@ Example:
 
 Format:
  [
-   (PARTY, 'against',        PARTY),
+   (PARTY,          'against',        PARTY),
    (CASE_NAME,      'plaintiff',      PARTY),
    (CASE_NAME,      'defendant',      PARTY),
    (CASE_NAME,      'court type',     COURT_TYPE),

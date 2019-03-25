@@ -1,5 +1,6 @@
 from wit import Wit
 from textwrap import wrap
+import re
 import pprint
 
 pp = pprint.PrettyPrinter(indent = 4)
@@ -24,7 +25,10 @@ class WitClient:
 
 			caseNames = getNestedKey(witResponse, ["entities", "case_name"])
 			for instance in caseNames:
-				yield tuple(( "CASE_NAME", instance["value"] ))
+                # Cleanup extraneous punctuation WitAI may include, e.g., "133 ; Roe vs Wade"
+				case = re.findall(r"[\w\s'’-]+ v. [\w\s'’-]+", instance["value"])
+				if len(case):
+					yield tuple(( "CASE_NAME", case[0].strip() ))
 
 			caseTypes = getNestedKey(witResponse, ["entities", "case_type"])
 			for instance in caseTypes:
