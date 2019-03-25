@@ -22,34 +22,29 @@ class Case:
         self.text = ' '.join([opinion['text'] for opinion in info['casebody']['data']['opinions']])
         self.appeal = ('appeal' in self.text or 'appeal' in self.court_name)
 
-        self.tuples = []
-        self.generate_tuples()
-
-
-    def generate_tuples(self, debug=True):
+    def relationships(self, debug=True):
+        yield (self.case_name, ' decided on ', self.date)
 
         if 'v.' in self.case_name:
             parties = self.case_name.split(' v. ')
             first = parties[0]
             second = parties[1]
 
-            self.tuples.append((first, ' against ', second))
+            yield (first, ' against ', second)
             if self.appeal:
-                self.tuples.append((self.case_name, ' appellant ', first))
-                self.tuples.append((self.case_name, ' appellee ', second))
+                yield (self.case_name, ' appellant ', first)
+                yield (self.case_name, ' appellee ', second)
             else:
-                self.tuples.append((self.case_name, ' plaintiff ', first))
-                self.tuples.append((self.case_name, ' defendant ', second))
-
-        self.tuples.append((self.case_name, ' decided on ', self.date))
+                yield (self.case_name, ' plaintiff ', first)
+                yield (self.case_name, ' defendant ', second)
 
         for entity, value in self.legal_entities(self.court_name):
-            self.tuples.append((self.case_name, ' court type ', value))
+            yield (self.case_name, ' court type ', value)
             if debug:
                 print("%s: %s" % (entity, value))
 
         for state in self.states(self.court_name):
-            self.tuples.append((self.case_name, ' court location ', state))
+            yield (self.case_name, ' court location ', state)
             if debug:
                 print(state)
 
@@ -59,18 +54,15 @@ class Case:
 
             for entity, value in self.legal_entities(sentence.text):
                 if entity == "CASE_NAME" and value != self.case_name:
-                    self.tuples.append((self.case_name, ' references ', value))
+                    yield (self.case_name, ' references ', value)
 
                 if debug:
                     print(entity, value)
 
         for relation in openie_client.extractRelationships(self.text):
-            self.tuples.append(relation)
+            yield relation
             if debug:
                 print(relation)
-
-        print(self.tuples)
-
 
     def saveTrainingData(self, output_file):
         for sentence in self.generateTrainingData(self.text):

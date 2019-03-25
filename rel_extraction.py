@@ -36,7 +36,7 @@ def preprocess(file, case_index=0, num_cases=1, debug=True, train=False):
                 
             if debug:
                 print(idx)
-                print(case.tuples)
+                print(list(case.relationships()))
                 print()
 
             idx += 1
