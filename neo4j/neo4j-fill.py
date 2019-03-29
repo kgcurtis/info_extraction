@@ -1,10 +1,10 @@
 from neo4j import GraphDatabase, basic_auth
 import config
-
+import sys
 class CaseLawNeoDB(object):
     def __init__(self, uri, user, pw):
         creds = basic_auth(user, pw)
-        self.driver = GraphDatabase.driver(uri, auth=creds) 
+        self.driver = GraphDatabase.driver(uri, auth=creds)
 
     def close(self):
         self.driver.close()
@@ -36,6 +36,22 @@ def merge_case_rel_attr(tx, sro, rel, attr):
             ) % (attr, rel)
     tx.run(cmd, nameA=sro[0], nameB=sro[2])
 
+def merge_party_rel(tx, sro, rel, attr):
+    cmd = (
+            'MERGE (c:Party {name:$nameA}) '
+            'MERGE (a:%s {name:$nameB}) '
+            'MERGE (c)-[r:%s]->(a)'
+            ) % (attr, rel)
+    tx.run(cmd, nameA=sro[0], nameB=sro[2])
+
+def merge_party_appellee(tx, sro, rel, attr):
+    cmd = (
+            'MERGE (c:Party {name:$nameA}) '
+            'MERGE (a:%s {name:$nameB}) '
+            'MERGE (c)-[r:%s]->(a)'
+            ) % (attr, rel)
+    tx.run(cmd, nameA=sro[0], nameB=sro[2])
+
 # use these functions
 def merge_party_against_party(tx, sro):
     merge_party_rel_party(tx, sro, 'IS_AGAINST')
@@ -52,14 +68,41 @@ def merge_case_type(tx, sro):
 def merge_case_location(tx, sro):
     merge_case_rel_attr(tx, sro, 'TOOK_PLACE_IN', 'Location')
 
+def merge_case_references(tx, sro):
+    merge_case_rel_attr(tx, sro, 'REFERENCES', 'Case')
+
+def merge_case_date(tx, sro):
+    merge_case_rel_attr(tx, sro, 'DECIDED_ON', 'Date')
+
+def merge_appellant(tx,sro):
+    merge_party_rel(tx, sro, 'IS_APPELLANT_OF', 'Party')
+
+def merge_appellee(tx,sro):
+    merge_party_rel(tx, sro, 'IS_APPELLEE_OF', 'Party')
+
+def merge_verdict(tx,sro):
+    merge_case_rel_attr(tx, sro, 'VERDICT_IS', 'Verdict')
+
+def merge_evidence(tx,sro):
+    merge_case_rel_attr(tx, sro, 'EVIDENCE_IS', 'Evidence')
 
 phrase_map = {
     'against': merge_party_against_party,
-    'plaintiff': merge_case_plaintiff_party,
-    'defendant': merge_case_defendant_party,
-    'court type': merge_case_type,
-    'court location': merge_case_location
+    'plaintiff_is': merge_case_plaintiff_party,
+    'defendant_is': merge_case_defendant_party,
+    'appellant_is': merge_appellant,
+    'appellee_is': merge_appellee,
+    'court_type': merge_case_type,
+    'court_location': merge_case_location,
+    'decision_date' : merge_case_date,
+    'references' : merge_case_ref_rel_attr,
+    'verdict' : merge_verdict,
+    'evidence' : merge_evidence
+
 }
+
+# (CASE_NAME, "verdict", free text)
+# (CASE_NAME, "evidence", free text
 
 # sros is a List[Tuple(Subject, Relation, Object)]
 # as of git commit 0e610f060fd71b62c2784959b0f4b42b3a39c979
@@ -88,9 +131,20 @@ hardcoded_test = [
   ('Ben v. Hadi', 'defendant',      'Hadi'),
   ('Ben v. Hadi', 'court type',     'medium'),
   ('Ben v. Hadi', 'court location', 'GDC 2nd floor atrium'),
+  ('Ben v. Hadi', 'references', 'Shiva v. Hadi')
  ]
 
 if __name__ == '__main__':
     neo = CaseLawNeoDB(config.instance, config.username, config.password)
-    fill_db(neo.driver, hardcoded_test)
+    cases = []
+    with open(sys.argv[1], 'r') as f:
+        for line in f.readlines():
+            line = line.rstrip('\n')
+            # print(line)
+            arr = line.split('*')[:-1]
+            # omit = ['appellant_is','decision_date','appellee_is']
+            # if arr[1] not in omit:
+            cases.append(arr)
+        # print(cases)
+    fill_db(neo.driver, cases)
     neo.close()
