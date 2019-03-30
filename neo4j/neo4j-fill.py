@@ -44,13 +44,6 @@ def merge_party_rel(tx, sro, rel, attr):
             ) % (attr, rel)
     tx.run(cmd, nameA=sro[0], nameB=sro[2])
 
-def merge_party_appellee(tx, sro, rel, attr):
-    cmd = (
-            'MERGE (c:Party {name:$nameA}) '
-            'MERGE (a:%s {name:$nameB}) '
-            'MERGE (c)-[r:%s]->(a)'
-            ) % (attr, rel)
-    tx.run(cmd, nameA=sro[0], nameB=sro[2])
 
 # use these functions
 def merge_party_against_party(tx, sro):
@@ -95,10 +88,9 @@ phrase_map = {
     'court_type': merge_case_type,
     'court_location': merge_case_location,
     'decision_date' : merge_case_date,
-    'references' : merge_case_ref_rel_attr,
+    'references' : merge_case_rel_attr,
     'verdict' : merge_verdict,
     'evidence' : merge_evidence
-
 }
 
 # (CASE_NAME, "verdict", free text)
@@ -134,17 +126,36 @@ hardcoded_test = [
   ('Ben v. Hadi', 'references', 'Shiva v. Hadi')
  ]
 
-if __name__ == '__main__':
-    neo = CaseLawNeoDB(config.instance, config.username, config.password)
+def parse_shiva_triples(file):
     cases = []
-    with open(sys.argv[1], 'r') as f:
+    with open(file, 'r') as f:
         for line in f.readlines():
             line = line.rstrip('\n')
-            # print(line)
-            arr = line.split('*')[:-1]
-            # omit = ['appellant_is','decision_date','appellee_is']
-            # if arr[1] not in omit:
-            cases.append(arr)
-        # print(cases)
+            line = line.split('*')
+            line = line[0].split(',')
+            if len(line) == 3:
+                first = line[0].strip('\'').strip('\'')
+                first = first[2:]
+                rel = line[1]
+                rel = rel[2:len(rel)-1].strip(' ')
+                second = line[2]
+                second = second[2:len(second)-2]
+                cases.append([first,rel,second])
+    return cases
+
+if __name__ == '__main__':
+    neo = CaseLawNeoDB(config.instance, config.username, config.password)
+    cases = parse_shiva_triples(sys.argv[1])
     fill_db(neo.driver, cases)
-    neo.close()
+
+    # with open(sys.argv[1], 'r') as f:
+    #     for line in f.readlines():
+    #         line = line.rstrip('\n')
+    #         # print(line)
+    #         arr = line.split('*')[:-1]
+    #         # omit = ['appellant_is','decision_date','appellee_is']
+    #         # if arr[1] not in omit:
+    #         cases.append(arr)
+    #     # print(cases)
+    # fill_db(neo.driver, cases)
+    # neo.close()
