@@ -27,8 +27,7 @@ def preprocess(file, case_index=0, num_cases=1, debug=True, train=False):
                 idx += 1
                 continue
 
-            if debug:
-                print("Case number: %s" % str(idx))
+            print("Case number: %s" % str(idx))
 
             case = Case(rawCase)
             cases.append(case)

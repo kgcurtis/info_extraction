@@ -45,9 +45,9 @@ class Case:
         self.parser = CustomParser(self.text)
         self.appeal = ('appeal' in self.text or 'appeal' in self.court_name)
 
-    def get_openie_relationships(self):
+    def get_openie_relationships(self, text):
         relations = {}
-        for relation in openie_client.extractRelationships(self.text):
+        for relation in openie_client.extractOpenRelations(text):
             key = relation[0].lower()
             if key not in relations:
                 relations[key] = relation
@@ -112,22 +112,16 @@ class Case:
                 print(state)
 
         print("Getting case references")
-        for sentence in spacy_client.sentences(self.text):
-            if debug:
-                print(sentence)
-
-            for case in self.parser.case_names():
-                if self.case_name != case:
-                    yield (self.case_name, 'references', case)
-
-                if debug:
-                    print("CASE", case_name)
+        for case in self.parser.case_names():
+            if self.case_name != case:
+                yield (self.case_name, 'references', case)
 
         print("Getting OpenIE relationships")
-        for relation in self.get_openie_relationships():
-            yield relation
-            if debug:
-                print(relation)
+        for sentence in self.parser.doc.sents:
+            for relation in self.get_openie_relationships(sentence.text):
+                yield relation
+                if debug:
+                    print(relation)
 
         print("Getting crimes")
         for crime in self.identify_crimes():
