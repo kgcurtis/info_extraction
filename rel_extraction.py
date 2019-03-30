@@ -31,18 +31,9 @@ def preprocess(file, case_index=0, num_cases=1, debug=True, train=False):
 
             case = Case(rawCase)
             cases.append(case)
-            relationships = set(case.relationships(debug = False))
-                
-                # print(case.text)
-                # for relationship in case.relationships(debug = False):
-                #     print(relationship)
-                # print(relationships)
-                # print()
 
             with open("output.txt", "a") as file:
-                for relation in relationships:
-                    file.write(str(relation))
-                    file.write("\n")
+                file.write("\n".join(str(relation) for relation in case.relationships(debug = False)))
 
             idx += 1
 
@@ -53,5 +44,4 @@ def preprocess(file, case_index=0, num_cases=1, debug=True, train=False):
 
 
 # Update this to the correct jsonl file
-cases = preprocess('data.jsonl', case_index = 123, num_cases = "all")
-# Problematic cases: 122
+cases = preprocess('data.jsonl', case_index = 674, num_cases = "all")

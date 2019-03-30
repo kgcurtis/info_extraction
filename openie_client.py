@@ -13,9 +13,8 @@ class OpenIE:
         relationships = []
         for sentence in sentences:
             rels = sentence['openie']
-            relationships.extend([(rel['subject'], rel['relation'], rel['object']) for rel in rels])
-
-        return relationships
+            for rel in rels:
+                yield rel['subject'], rel['relation'], rel['object']
 
     def extractTargetedRelations(self, msg):
 

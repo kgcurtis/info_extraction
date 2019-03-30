@@ -12,6 +12,8 @@ spacy_client = Spacy()
 spacy_client.add_states_pipe()
 nlp = spacy.load("en_core_web_md")
 
+numOfSentences = 25
+
 key_terms = {
     "evidence": ("evidence", 2),
     "judgment": ("verdict", 2),
@@ -56,27 +58,17 @@ class Case:
             if len(relation[-1]) > len(cachedRelation[-1]):
                 relations[key] = relation
 
-        for relation in relations.values():
-            key = relation[0]
-            action = relation[1]
-            finale = relation[2]
-
-            # Multi-word keys are probably less informative / duplicated
-            if " " not in key:
-                if key in key_terms:
-                    yield self.case_name, key_terms[key][0], relation[ key_terms[key][1] ]
-                else:
-                    for key_action, action_type in key_actions.items():
-                        if key_action in action or key_action in finale:
-                            yield self.case_name, action_type, " ".join(relation[1:])
-                    # for relevant in self.relevant_relations:
-                    #     if relevant in finale:
-                    #         yield self.case_name, relevant, action
-                    # else:
-                    # print("~ no match: % s" % (relation, ) )
+        print("   OpenIE API call resolved")
+        for key, action, finale in relations.values():
+            if key in key_terms:
+                yield self.case_name, key_terms[key][0], relation[ key_terms[key][1] ]
+            # Multi-word keys are probably less informative and/or duplicated
+            elif " " in key:
+                continue
             else:
-                # print("~~ less likely: % s" % (relation, ) )
-                pass
+                for key_action, action_type in key_actions.items():
+                    if key_action in action or key_action in finale:
+                        yield self.case_name, action_type, " ".join(relation[1:])
 
     def identify_crimes(self):
         seen = set()
@@ -116,9 +108,15 @@ class Case:
             if self.case_name != case:
                 yield (self.case_name, 'references', case)
 
-        print("Getting OpenIE relationships")
-        for sentence in self.parser.doc.sents:
-            for relation in self.get_openie_relationships(sentence.text):
+        print("Getting OpenIE relationships: ", end='')
+        sentences = list(self.parser.doc.sents)
+        print(len(sentences))
+        def sentence_chunks():
+            for i in range(0, len(sentences), numOfSentences):
+                yield sentences[i: i + numOfSentences]
+        for chunk in sentence_chunks():
+            text = " ".join(sentence.text for sentence in chunk)
+            for relation in self.get_openie_relationships(text):
                 yield relation
                 if debug:
                     print(relation)
@@ -126,10 +124,6 @@ class Case:
         print("Getting crimes")
         for crime in self.identify_crimes():
             yield self.case_name, "prompted by", crime
-
-    def legal_entities(self, msg):
-        # return ((entity, value) for entity, value in wit_client.entities(msg))
-        pass
 
     def states(self, msg):
         return (state for state in spacy_client.states(msg))
