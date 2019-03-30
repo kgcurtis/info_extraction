@@ -13,8 +13,8 @@ Example:
 
 Format:
 [
-   (PARTY,          'against',        PARTY),
    (CASE_NAME,      'decided on',     DATE),
+   (PARTY,          'against',        PARTY),
    (CASE_NAME,      'plaintiff',      PARTY),
    (CASE_NAME,      'defendant',      PARTY),
    (CASE_NAME,      'court type',     COURT_TYPE),
@@ -24,4 +24,8 @@ Format:
 
 Potential relationships to add:
 - Reason for the case
+  PARTY - CHARGED WITH - CRIME
+
 - Outcome of the case
+  PARTY - CONVICTED OF - CRIME
+  DECISION - ACQUITTED BY - GOVERNOR
