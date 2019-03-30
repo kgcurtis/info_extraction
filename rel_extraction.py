@@ -27,12 +27,13 @@ def preprocess(file, case_index=0, num_cases=1, debug=True, train=False):
                 idx += 1
                 continue
 
+            if debug:
+                print("Case number: %s" % str(idx))
+
             case = Case(rawCase)
             cases.append(case)
             relationships = set(case.relationships(debug = False))
                 
-            if debug:
-                print("Case number: %s" % str(idx))
                 # print(case.text)
                 # for relationship in case.relationships(debug = False):
                 #     print(relationship)
@@ -53,4 +54,5 @@ def preprocess(file, case_index=0, num_cases=1, debug=True, train=False):
 
 
 # Update this to the correct jsonl file
-cases = preprocess('data.jsonl', case_index = 0, num_cases = "all")
+cases = preprocess('data.jsonl', case_index = 123, num_cases = "all")
+# Problematic cases: 122

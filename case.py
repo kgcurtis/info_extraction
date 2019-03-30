@@ -45,24 +45,6 @@ class Case:
         self.parser = CustomParser(self.text)
         self.appeal = ('appeal' in self.text or 'appeal' in self.court_name)
 
-    @staticmethod
-    def get_judgements(doc):
-        matcher = Matcher(nlp.vocab)
-        pattern = [
-            {"LEMMA": "convict"},
-            {"POS": "ADP", "OP": "+"},
-            {"POS": "VERB", "OP": "?"},
-            {"POS": "NOUN", "OP": "?"},
-            {"POS": "CCONJ", "OP": "?"},
-            {"POS": "NOUN", "OP": "?"},
-        ]
-        matcher.add("charges", None, pattern)
-
-        for (ID, start, end) in matcher(doc):
-            for token in doc[start:end]:
-                if token.pos_ in ("NOUN"):
-                    yield token.text
-
     def get_openie_relationships(self):
         relations = {}
         for relation in openie_client.extractRelationships(self.text):
@@ -108,6 +90,7 @@ class Case:
                     yield phrase
 
     def relationships(self, debug=True):
+        print("Getting meta relationships")
         yield (self.case_name, 'decided on', self.date)
 
         if 'v.' in self.case_name:
@@ -128,6 +111,7 @@ class Case:
             if debug:
                 print(state)
 
+        print("Getting case references")
         for sentence in spacy_client.sentences(self.text):
             if debug:
                 print(sentence)
@@ -139,14 +123,13 @@ class Case:
                 if debug:
                     print("CASE", case_name)
 
+        print("Getting OpenIE relationships")
         for relation in self.get_openie_relationships():
             yield relation
             if debug:
                 print(relation)
 
-        for judgement in self.get_judgements(self.parser.doc):
-            yield judgement
-
+        print("Getting crimes")
         for crime in self.identify_crimes():
             yield self.case_name, "prompted by", crime
 
