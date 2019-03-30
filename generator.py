@@ -3,7 +3,7 @@ from spacy_client import Spacy
 from openie_client import OpenIE
 import re
 
-class TrainingDataGenerator:
+class Generator:
 
     def __init__(self):
         self.openie_client = OpenIE()
@@ -39,6 +39,11 @@ class TrainingDataGenerator:
 
         wordDict = {}
 
+        for entity, value, _, _ in self.openie_client.entities(msg):
+            valueArr = value.split(' ')
+            for item in valueArr:
+                wordDict[item] = entity
+
         #Get legal entity annotations from wit
         for entity, value in self.wit_client.entities(msg):
             valueArr = value.split(' ')
@@ -51,7 +56,7 @@ class TrainingDataGenerator:
             for item in valueArr:
                 wordDict[item] = entity
 
-        annotated_sentences = self.openie_client.annotated_sentences(msg)
+        annotated_sentences = self.openie_client.annotateSentences(msg)
 
         sentences = []
         for sentence in annotated_sentences:
