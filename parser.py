@@ -12,8 +12,7 @@ class CustomParser:
 		self.cases = set()
 
 	'''
-		Condense additional undetected noun chunks using
-		Regex patterns
+		Condense additional undetected noun chunks
 	'''
 	def condense_noun_chunks(self):
 		# Merge explicitly-identified noun chunks
