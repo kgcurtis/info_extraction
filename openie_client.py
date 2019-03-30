@@ -38,3 +38,16 @@ class OpenIE:
         for sentence in sentences:
             tokens = sentence['tokens']
             yield [(word['word'], word['pos']) for word in tokens]
+
+    def entities(self, msg):
+
+        url = 'http://localhost:9000/'
+        params = {'properties':'{"annotators":"ner","outputFormat":"json"}'}
+
+        r = requests.post(url, params=params, data=msg.encode('utf-8'))
+
+        sentences = r.json()['sentences']
+        for sentence in sentences:
+            entities = sentence['entitymentions']
+            for entity in entities:
+                yield(entity['ner'], entity['text'], entity['docTokenBegin'], entity['docTokenEnd'])
