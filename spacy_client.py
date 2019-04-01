@@ -7,6 +7,7 @@ from spacy.language import Language
 from spacy.util import minibatch, compounding
 from pathlib import Path
 from states_pipeline import States
+from parser import CustomParser
 
 class Spacy:
     def __init__(self, model='en_core_web_sm'):
@@ -60,7 +61,9 @@ class Spacy:
             print("States", [token.text for token in doc if token._.is_state])
 
     def entities(self, msg):
-        doc = self.nlp(msg)
+        # parser = CustomParser(msg)
+        # doc = parser.doc
+        doc = nlp(text)
         return ((ent.text, ent.label_) for ent in doc.ents)
 
     def people(self, msg):

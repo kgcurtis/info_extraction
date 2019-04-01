@@ -78,8 +78,8 @@ public class RothCONLL04Reader extends GenericDataSetReader {
       return "LEGAL_POSITION";
     } else if(ner.equalsIgnoreCase("COURT_TYPE")){
       return "COURT_TYPE";
-    } else if (ner.equalsIgnoreCase("TITLE")) {
-      return "TITLE";
+    } else if (ner.equalsIgnoreCase("CRIMINAL_OFFENSE")) {
+      return "CRIMINAL_OFFENSE";
     } else {
       if ( ! warnedNER) {
         warnedNER = true;

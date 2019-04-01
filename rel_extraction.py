@@ -7,12 +7,11 @@ def preprocess(file, case_index=0, num_cases=1, debug=True, train=False):
     cases = []
     count = 0
 
-    if train:
-        training_data_file = open('training-data.tsv','w')
-
     upperBound = sys.maxsize
     if num_cases != "all":
         upperBound = case_index + num_cases
+    else:
+        num_cases = 100000
 
     with open(file, 'rb') as f:
         reader = json_lines.reader(f)
@@ -28,16 +27,13 @@ def preprocess(file, case_index=0, num_cases=1, debug=True, train=False):
                 idx += 1
                 continue
 
+            print("Case number: %s" % str(idx))
+
             case = Case(rawCase)
             cases.append(case)
 
-            if train:
-                case.saveTrainingData(training_data_file)
-                
-            if debug:
-                print(idx)
-                print(list(case.relationships()))
-                print()
+            with open("output.txt", "a") as file:
+                file.write("\n".join(str(relation) for relation in case.relationships(debug = False)))
 
             idx += 1
 
@@ -48,4 +44,4 @@ def preprocess(file, case_index=0, num_cases=1, debug=True, train=False):
 
 
 # Update this to the correct jsonl file
-cases = preprocess('data.jsonl', case_index = 6, num_cases = 2)
+cases = preprocess('data.jsonl', case_index = 674, num_cases = "all")

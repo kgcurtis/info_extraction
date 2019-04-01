@@ -26,6 +26,7 @@ public class RothEntityExtractor extends BasicEntityExtractor {
     entityTagForNer.put("legal_action", "LEGAL_ACTION");
     entityTagForNer.put("legal_position", "LEGAL_POSITION");
     entityTagForNer.put("court_type", "COURT_TYPE");
+    entityTagForNer.put("criminal_offense", "CRIMINAL_OFFENSE");
 
   }
 
