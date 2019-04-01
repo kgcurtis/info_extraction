@@ -1,5 +1,5 @@
 from neo4j import GraphDatabase, basic_auth
-import config
+# import config
 import sys
 class CaseLawNeoDB(object):
     def __init__(self, uri, user, pw):
@@ -79,6 +79,9 @@ def merge_verdict(tx,sro):
 def merge_evidence(tx,sro):
     merge_case_rel_attr(tx, sro, 'EVIDENCE_IS', 'Evidence')
 
+def merge_prompted(tx,sro):
+    merge_case_rel_attr(tx , sro , 'PROMPTED_BY', 'Crime')
+
 phrase_map = {
     'against': merge_party_against_party,
     'plaintiff_is': merge_case_plaintiff_party,
@@ -90,7 +93,8 @@ phrase_map = {
     'decision_date' : merge_case_date,
     'references' : merge_case_rel_attr,
     'verdict' : merge_verdict,
-    'evidence' : merge_evidence
+    'evidence' : merge_evidence,
+    'prompted by': merge_prompted
 }
 
 # (CASE_NAME, "verdict", free text)
